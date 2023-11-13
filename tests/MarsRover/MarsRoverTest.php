@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\MarsRover;
 
 use App\MarsRover\MarsRover;
