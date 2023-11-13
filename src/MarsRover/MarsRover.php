@@ -18,12 +18,14 @@ class MarsRover implements Movible
     private int $x;
     private int $y;
     private string $direction;
+    private int $directionLength;
 
     public function __construct()
     {
         $this->x = 0;
         $this->y = 0;
-        $this->direction = self::DIRECTIONS[0]; // Inicializa la dirección a 'N'
+        $this->direction = self::DIRECTIONS[0];// Inicializa la dirección a 'N'
+        $this->directionLength = count(self::DIRECTIONS);
     }
 
     public function execute(string $commands): string
@@ -50,13 +52,13 @@ class MarsRover implements Movible
     private function turnLeft(): void
     {
         $currentDirectionIndex = array_search($this->direction, self::DIRECTIONS);
-        $this->direction = self::DIRECTIONS[($currentDirectionIndex - 1 + 4) % 4];
+        $this->direction = self::DIRECTIONS[($currentDirectionIndex - 1 + $this->directionLength) % $this->directionLength];
     }
 
     private function turnRight(): void
     {
         $currentDirectionIndex = array_search($this->direction, self::DIRECTIONS);
-        $this->direction = self::DIRECTIONS[($currentDirectionIndex + 1) % 4];
+        $this->direction = self::DIRECTIONS[($currentDirectionIndex + 1) % $this->directionLength];
     }
 
     private function move(): void
